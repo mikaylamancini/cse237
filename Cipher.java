@@ -9,14 +9,17 @@ public class Cipher {
         String[] testDecrypt = {"yjwrnsfq", "ijgzllnsl",  "htsywtq"};
 
         try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+
             for (String s: testEncrypt) {
-                System.out.println(encrypt(s, 5));
+                writer.write(encrypt(s, 5));
             }
             for (String s: testDecrypt) {
-                System.out.println(decrypt(s, 5));
+                writer.write(decrypt(s, 5));
             }
 
-        } catch (Exception e){
+            writer.close();
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
@@ -40,10 +43,10 @@ public class Cipher {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if(Character.isUpperCase(text.charAt(i))) {
-                char ch = (char) ((int)(text.charAt(i) - s - 65) % 26 + 65);
+                char ch = (char) ((int)(text.charAt(i) - s - 75) % 26 + 65);
                 sb.append(ch);
             } else {
-                char ch = (char)  (((int)text.charAt(i) - s - 97) % 26 + 97);
+                char ch = (char)  (((int)text.charAt(i) - s - 107) % 26 + 97);
                 sb.append(ch);
             }
         }
